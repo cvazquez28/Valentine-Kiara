@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Valentine’s Day, Kiara ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: radial-gradient(circle at top, #ffd1dc, #ff9aa2);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+      max-width: 420px;
+      width: 100%;
+      padding: 24px 20px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before,
+    .card::after {
+      content: "❤";
+      position: absolute;
+      font-size: 48px;
+      color: rgba(255, 105, 180, 0.22);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .card::before { top: 8px; left: 12px; animation-delay: 0.5s; }
+    .card::after { bottom: -8px; right: 18px; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); opacity: 0.7; }
+      50% { transform: translateY(-10px); opacity: 1; }
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 1.8rem;
+      color: #e63970;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #444;
+    }
+
+    .message {
+      margin: 12px 0 20px;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .highlight { color: #e63970; font-weight: 600; }
+    .name { color: #e63970; font-weight: 700; }
+
+    .photo-wrapper {
+      margin: 0 auto 16px;
+      width: 100%;
+      max-width: 260px;
+      aspect-ratio: 4 / 5;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #ffe4ec, #ffc2d1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      border: 3px solid #ffc4d6;
+      cursor: pointer;
+    }
+
+    .photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ff8fab, #ff4d6d);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 8px 18px rgba(255, 77, 109, 0.45);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .photo-label:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(255, 77, 109, 0.55);
+    }
+
+    .photo-label span.icon { font-size: 1rem; }
+    #photoInput { display: none; }
+
+    .note { margin-top: 4px; font-size: 0.78rem; color: #777; }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .footer span.heart { color: #e63970; }
+
+    @media (max-width: 480px) {
+      .card { padding: 20px 16px 24px; }
+      h1 { font-size: 1.6rem; }
+      .photo-wrapper { max-width: 230px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Happy Valentine’s Day</h1>
+    <h2>For my beautiful <span class="name">Kiara Liz</span> 💌</h2>
+
+    <!-- PHOTO AREA WITH YOUR IMAGE -->
+    <div class="photo-wrapper" id="photoArea">
+      <img
+        id="preview"
+        alt="Us together"
+        src="WhatsApp-Image-2026-02-14-at-12.48.02-PM.jpg"
+      />
+    </div>
+
+    <label for="photoInput" class="photo-label">
+      <span class="icon">📸</span>
+      <span>Change the photo</span>
+    </label>
+    <input type="file" id="photoInput" accept="image/*" />
+
+    <p class="note">This picture is just for us — it never leaves your device.</p>
+
+    <p class="message">
+      <span class="name">Kiara</span>, every mile, every call, every laugh with you reminds me that
+      my heart already found its <span class="highlight">home</span>.  
+      No matter where we are, it will always be you and me, choosing each other over and over again.
+    </p>
+
+    <p class="message">
+      In you, I found my missing piece. You complete me in ways I never knew I needed.  
+      Your love is the puzzle piece that makes the picture of my life whole and beautiful.
+    </p>
+
+    <div class="footer">
+      With all my love,  
+      <span class="heart">❤️</span> Your Valentine
+    </div>
+  </div>
+
+  <script>
+    const input = document.getElementById("photoInput");
+    const preview = document.getElementById("preview");
+
+    input.addEventListener("change", function () {
+      const file = this.files[0];
+      if (!file) return;
+
+      if (!file.type.includes("image")) {
+        alert("Please pick an image file.");
+        this.value = "";
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        preview.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>
